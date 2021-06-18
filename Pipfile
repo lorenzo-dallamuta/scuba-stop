@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "==3.2"
+django-crispy-forms = "*"
+
+[dev-packages]
+django-debug-toolbar = "*"
+autopep8 = "*"
+pylint-django = "*"
+django-extensions = "*"
+ipython = {extras = ["lab"], version = "*"}
+
+[requires]
+python_version = "3.6"
