@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/ldm/.local/share/virtualenvs/myawesomeproject--kA3wLC7/bin/python",
+    "python.pythonPath": "/home/ldm/.local/share/virtualenvs/scuba-stop-HdR5nuhF/bin/python",
     "editor.formatOnSave": true,
     "python.formatting.provider": "autopep8",
     "python.linting.enabled": true,
