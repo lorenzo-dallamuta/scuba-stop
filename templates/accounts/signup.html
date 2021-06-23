@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Registrazione{% endblock title %}
+
+{% block content %}
+    <div class="col-8">
+        <hr class="mt-0 mb-4">
+        <form method="post" novalidate>
+            <fieldset style="color:green;">
+                <legend>{{title}}</legend>
+                {% csrf_token %}
+                {{ userform|crispy}}
+                {{ profileform|crispy}}
+                <input type="submit" name="submit" value={{title}} class="btn btn-primary btn-success" id="submit-id-submit">
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}

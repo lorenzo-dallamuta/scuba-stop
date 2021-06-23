@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.utils.text import slugify
 from django.conf import settings
 from string import Template
 
@@ -11,11 +10,11 @@ class Profile(models.Model):
     # username, first_name, last_name, email, is_staff, is_active, date_joined
     # clean, get_full_name, get_short_name, email_user
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True, related_name='profile')
 
     # address
     street_address = models.CharField(max_length=255)
-    zip_code = models.IntegerField(null=True)
+    zipcode = models.IntegerField(null=True)
     city = models.CharField(max_length=85)
 
     # TODO: orders
@@ -31,11 +30,11 @@ class Profile(models.Model):
 
     @property
     def full_address(self):
-        if not (self.street_address and self.zip_code and self.city):
+        if not (self.street_address and self.zipcode and self.city):
             return ""
         else:
             return Template('street zip city').substitute(
-                street=self.street_address, zip=self.zip_code, city=self.city).strip()
+                street=self.street_address, zip=self.zipcode, city=self.city).strip()
 
     # # attempt to decouple User and Profile for cases like admin users
     # @receiver(post_save, sender=User)

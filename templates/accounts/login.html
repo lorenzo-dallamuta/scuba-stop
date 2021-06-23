@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Log In{% endblock title %}
+
+{% block content %}
+    <div class="col-8">
+        <hr class="mt-0 mb-4">
+        <form method="post" novalidate>
+            {% crispy form %}
+        </form>
+    </div>
+{% endblock  %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if profile %}
+    <h1>serving {{profile.full_name}}</h1>
+{% endif %}
+<a href="{% url 'login' %}">LOGIN</a>
+<a href="{% url 'logout' %}">LOGOUT</a>
+<a href="{% url 'signup' %}">SIGNUP</a>
+<a href="{% url 'update' %}">UPDATE</a>
+<a href="{% url 'password' %}"> PASSWORD</a>
+{% endblock content %}
