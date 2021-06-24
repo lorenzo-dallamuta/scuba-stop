@@ -1,9 +1,10 @@
-from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, get_user_model
-from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.contrib.auth.views import LoginView
+from django.shortcuts import render, redirect
+from django.utils.translation import gettext as _
 from accounts.forms import LoginForm, SignupFormProfile, SignupFormUser
 from accounts.models import Profile
+
 
 User = get_user_model()
 
@@ -39,7 +40,7 @@ def signup(request):
     else:
         userform = SignupFormUser()
         profileform = SignupFormProfile()
-    return render(request, 'accounts/signup.html', {'title': 'Signup', 'userform': userform, 'profileform': profileform})
+    return render(request, 'accounts/signup.html', {'title': _('Signup'), 'userform': userform, 'profileform': profileform})
 
 
 def update(request):
@@ -55,4 +56,4 @@ def update(request):
             return redirect('home')
     else:
         profileform = SignupFormProfile(instance=request.user.profile)
-    return render(request, 'accounts/signup.html', {'title': 'Update', 'profileform': profileform})
+    return render(request, 'accounts/signup.html', {'title': _('Update'), 'profileform': profileform})

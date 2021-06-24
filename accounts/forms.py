@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from crispy_forms.helper import FormHelper
+from django.utils.translation import gettext as _
 from crispy_forms.layout import ButtonHolder, Fieldset, Layout, Submit
 from accounts.models import Profile
 
@@ -9,8 +10,9 @@ User = get_user_model()
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput())
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(widget=forms.TextInput(), label=_('Username'))
+    password = forms.CharField(
+        widget=forms.PasswordInput(), label=_('Password'))
     fields = ['username', 'password']
 
     def __init__(self, request, *args, **kwargs):
@@ -23,7 +25,7 @@ class LoginForm(forms.Form):
             Fieldset('Login', 'username', 'password',
                      style='color:green;'),
             ButtonHolder(
-                Submit('submit', 'Login', css_class='btn-success')
+                Submit('submit', _('Login'), css_class='btn-success')
             ))
 
     def get_user(self):
@@ -33,10 +35,20 @@ class LoginForm(forms.Form):
 
 
 class SignupFormUser(UserCreationForm):
+    # this is to reset Null and Blank to false
+    first_name = forms.CharField(max_length=50, label=_('First Name'))
+    last_name = forms.CharField(max_length=50, label=_('Last Name'))
+
     class Meta:
         model = User
         fields = ('username', 'password1', 'password2',
                   'first_name', 'last_name')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
 
 
 class SignupFormProfile(forms.ModelForm):

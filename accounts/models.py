@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.utils.translation import gettext as _
 from string import Template
 
 User = get_user_model()
@@ -13,9 +14,9 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True, related_name='profile')
 
     # address
-    street_address = models.CharField(max_length=255)
-    zipcode = models.IntegerField(null=True)
-    city = models.CharField(max_length=85)
+    street_address = models.CharField(_('Street address'), max_length=255)
+    zipcode = models.IntegerField(_('Zipcode'), null=True)
+    city = models.CharField(_('City'), max_length=85)
 
     # TODO: orders
     # TODO: payment methods, coupons
