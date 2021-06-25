@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'accounts.apps.AccountsConfig',
+    'shop.apps.ShopConfig',
     'crispy_forms',
 ]
 
@@ -119,7 +120,7 @@ USE_L10N = True
 USE_TZ = True
 
 LOCALE_PATHS = (
-    str(BASE_DIR.joinpath('locale')),
+    BASE_DIR / 'locale',
 )
 
 
@@ -127,10 +128,13 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = str(BASE_DIR.joinpath('static'))
+STATICFILES_DIRS = [
+    BASE_DIR / "assets"
+]
+STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 10:56+0200\n"
+"POT-Creation-Date: 2021-06-25 12:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,6 +50,14 @@ msgstr "CAP"
 msgid "City"
 msgstr "Città"
 
+#: accounts/models.py:28
+msgid "Profile"
+msgstr "Profilo"
+
+#: accounts/models.py:29
+msgid "Profiles"
+msgstr "Profili"
+
 #: accounts/views.py:43
 msgid "Signup"
 msgstr "Registrati"
@@ -58,6 +66,58 @@ msgstr "Registrati"
 msgid "Update"
 msgstr "Modifica"
 
+#: shop/models.py:12 shop/models.py:28
+msgid "category"
+msgstr "categoria"
+
+#: shop/models.py:13
+msgid "categories"
+msgstr "categorie"
+
+#: shop/models.py:29
+msgid "name"
+msgstr "nome"
+
+#: shop/models.py:31
+msgid "brand"
+msgstr "marca"
+
+#: shop/models.py:34
+msgid "color"
+msgstr "colore"
+
+#: shop/models.py:36
+msgid "weight"
+msgstr "peso"
+
+#: shop/models.py:38
+msgid "demographic"
+msgstr "demografica"
+
+#: shop/models.py:40
+msgid "price per unit"
+msgstr "prezzo unitario"
+
+#: shop/models.py:42
+msgid "discount per unit"
+msgstr "sconto unitario"
+
+#: shop/models.py:47
+msgid "Product"
+msgstr "Prodotto"
+
+#: shop/models.py:48
+msgid "Products"
+msgstr "Prodotti"
+
+#: shop/models.py:71
+msgid "Order"
+msgstr "Ordine"
+
+#: shop/models.py:72
+msgid "Orders"
+msgstr "Ordini"
+
 #: templates/accounts/password.html:5 templates/accounts/password.html:12
 msgid "Change Password"
 msgstr "Cambia Password"
@@ -65,3 +125,6 @@ msgstr "Cambia Password"
 #: templates/accounts/password.html:15
 msgid "Change"
 msgstr "Cambia"
+
+#~ msgid "quantity"
+#~ msgstr "quantità"
