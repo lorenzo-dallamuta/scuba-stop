@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext as _
-from accounts.forms import LoginForm, SignupFormProfile, SignupFormUser
+from accounts.forms import LoginForm, SignupFormProfile, SignupFormUser, UpdateFormUser
 from accounts.models import Profile
 
 
@@ -45,15 +45,20 @@ def signup(request):
 
 def update(request):
     if request.method == 'POST':
+        userform = UpdateFormUser(request.POST, instance=request.user)
         profileform = SignupFormProfile(
             request.POST, instance=request.user.profile)
-        if profileform.is_valid():
-            profileform.save()
-            username = request.user.username
-            password = request.user.password
+        if userform.is_valid() and profileform.is_valid():
+            user = userform.save()
+            profile = profileform.save(commit=False)
+            profile.user = user
+            profile.save()
+            username = user.username
+            password = user.password
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
     else:
+        userform = UpdateFormUser(instance=request.user)
         profileform = SignupFormProfile(instance=request.user.profile)
-    return render(request, 'accounts/signup.html', {'title': _('Update'), 'profileform': profileform})
+    return render(request, 'accounts/signup.html', {'title': _('Update'), 'userform': userform, 'profileform': profileform})

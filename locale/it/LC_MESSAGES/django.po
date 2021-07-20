@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-25 12:39+0200\n"
+"POT-Creation-Date: 2021-07-20 12:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,6 +82,10 @@ msgstr "nome"
 msgid "brand"
 msgstr "marca"
 
+#: shop/models.py:32
+msgid "quantity"
+msgstr "quantità"
+
 #: shop/models.py:34
 msgid "color"
 msgstr "colore"
@@ -110,11 +114,11 @@ msgstr "Prodotto"
 msgid "Products"
 msgstr "Prodotti"
 
-#: shop/models.py:71
+#: shop/models.py:72
 msgid "Order"
 msgstr "Ordine"
 
-#: shop/models.py:72
+#: shop/models.py:73
 msgid "Orders"
 msgstr "Ordini"
 
@@ -126,5 +130,6 @@ msgstr "Cambia Password"
 msgid "Change"
 msgstr "Cambia"
 
-#~ msgid "quantity"
-#~ msgstr "quantità"
+#: users/models.py:7
+msgid "Email Address"
+msgstr "Indirizzo Email"

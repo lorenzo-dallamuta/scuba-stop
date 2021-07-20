@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from crispy_forms.helper import FormHelper
 from django.utils.translation import gettext as _
 from crispy_forms.layout import ButtonHolder, Fieldset, Layout, Submit
@@ -42,13 +42,26 @@ class SignupFormUser(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'password1', 'password2',
-                  'first_name', 'last_name')
+                  'email', 'first_name', 'last_name')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         for fieldname in ['username', 'password1', 'password2']:
             self.fields[fieldname].help_text = None
+
+
+# class UpdateFormUser(UserChangeForm):
+#     class Meta:
+#         model = User
+#         fields = ('email',)
+
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+class UpdateFormUser(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email',)
 
 
 class SignupFormProfile(forms.ModelForm):
