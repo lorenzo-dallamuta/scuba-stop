@@ -1,4 +1,5 @@
 from django.contrib.auth import login, authenticate, get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext as _
@@ -43,6 +44,7 @@ def signup(request):
     return render(request, 'accounts/signup.html', {'title': _('Signup'), 'userform': userform, 'profileform': profileform})
 
 
+@login_required(login_url='login')
 def update(request):
     if request.method == 'POST':
         userform = UpdateFormUser(request.POST, instance=request.user)
