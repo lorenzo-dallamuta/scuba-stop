@@ -23,9 +23,9 @@ class Product(models.Model):
         r = Product._meta.get_field('sku').max_length-len(nam)-len(col)-1
         l = [randint(1, 9) for i in range(r)]
         n = reduce(lambda a, b: str(a) + str(b), l)
-        return f'{nam}-{col}-{self.demographic}{n}'
+        return f'{nam}-{col}-{self.demographic}-{n}'
 
-    category = models.ManyToManyField(Category, verbose_name=_('category'))
+    categories = models.ManyToManyField(Category, verbose_name=_('category'))
     name = models.CharField(max_length=30, unique=True, verbose_name=_('name'))
     brand = models.CharField(max_length=20, null=True,
                              blank=True, verbose_name=_('brand'))
@@ -51,7 +51,7 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.sku = self.makesku()
         self.slug = slugify(self.name)
-        super().save(self, *args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

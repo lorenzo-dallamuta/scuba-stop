@@ -149,6 +149,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # log sql queries to console if debug is set to true
+CUSTOM_LOGGING_LEVEL = 'WARNING'
 LOGGING = {
     'version': 1,
     'filters': {
@@ -158,14 +159,14 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': 'DEBUG',
+            'level': CUSTOM_LOGGING_LEVEL,
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
         }
     },
     'loggers': {
         'django.db.backends': {
-            'level': 'DEBUG',
+            'level': CUSTOM_LOGGING_LEVEL,
             'handlers': ['console'],
         }
     }
