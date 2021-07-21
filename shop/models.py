@@ -29,7 +29,8 @@ class Product(models.Model):
     name = models.CharField(max_length=30, unique=True, verbose_name=_('name'))
     brand = models.CharField(max_length=20, null=True,
                              blank=True, verbose_name=_('brand'))
-    quantity = models.PositiveSmallIntegerField(verbose_name=_('quantity'))
+    quantity = models.PositiveSmallIntegerField(
+        verbose_name=_('quantity'), blank=True)
     color = models.CharField(max_length=20, null=True,
                              blank=True, verbose_name=_('color'))
     weight = models.DecimalField(
