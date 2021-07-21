@@ -3,8 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext as _
+from rest_framework import viewsets
 from accounts.forms import LoginForm, SignupFormProfile, SignupFormUser, UpdateFormUser
 from accounts.models import Profile
+from .serializers import ProfileSerializer
 
 
 User = get_user_model()
@@ -64,3 +66,8 @@ def update(request):
         userform = UpdateFormUser(instance=request.user)
         profileform = SignupFormProfile(instance=request.user.profile)
     return render(request, 'accounts/signup.html', {'title': _('Update'), 'userform': userform, 'profileform': profileform})
+
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer

@@ -30,6 +30,7 @@ urlpatterns = [
     path('password/', PasswordChangeView.as_view(template_name='accounts/password.html',
          success_url="/"), name='password'),
     path('api/', include('shop.urls')),
+    path('api/profiles/', include('accounts.urls')),
     path('', home, name='home'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

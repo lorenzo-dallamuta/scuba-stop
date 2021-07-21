@@ -9,8 +9,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        return self.request.user.profile.orders.all()
+
+    def perform_create(self, serializer):
+        serializer.save(profile=self.request.user.profile)
 
 
 class ProductViewSet(viewsets.ModelViewSet):

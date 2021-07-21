@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from shop.models import Category, Order, Product
+from accounts.serializers import ProfileSerializer
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -18,6 +19,8 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    profile = ProfileSerializer(read_only=True)
+
     class Meta:
         model = Order
         fields = '__all__'

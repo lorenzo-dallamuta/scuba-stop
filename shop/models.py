@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from functools import reduce
 from random import randint
+from accounts.models import Profile
 
 
 class Category(models.Model):
@@ -65,9 +66,11 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='orders')
+    products = models.ManyToManyField(Product)
     discount = models.DecimalField(
         max_digits=2, decimal_places=2, default=0.0, blank=True)
-    products = models.ManyToManyField(Product)
 
     class Meta():
         verbose_name = _('Order')
