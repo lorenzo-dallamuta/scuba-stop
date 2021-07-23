@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 from rest_framework import viewsets
 from accounts.forms import LoginForm, SignupFormProfile, SignupFormUser, UpdateFormUser
 from accounts.models import Profile
+from shop.permissions import IsAdminOrReadOnly, IsOwner
 from .serializers import ProfileSerializer
 
 
@@ -69,5 +70,8 @@ def update(request):
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    permission_classes = [IsAdminOrReadOnly, IsOwner]
+
+    def get_queryset(self):
+        return Profile.objects.filter(user=self.request.user)
