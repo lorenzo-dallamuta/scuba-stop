@@ -7,12 +7,12 @@ from shop.serializers import CategorySerializer, OrderSerializer, ProductSeriali
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = (IsAdminOrReadOnly,)
 
 
 class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
-    permission_classes = [IsOwner]
+    permission_classes = (IsOwner,)
 
     def get_queryset(self):
         return self.request.user.profile.orders.all()
@@ -24,4 +24,4 @@ class OrderViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = (IsAdminOrReadOnly,)

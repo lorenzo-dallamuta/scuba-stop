@@ -71,7 +71,7 @@ def update(request):
 
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
-    permission_classes = [IsAdminOrReadOnly, IsOwner]
+    permission_classes = (IsAdminOrReadOnly, IsOwner)
 
     def get_queryset(self):
         return Profile.objects.filter(user=self.request.user)

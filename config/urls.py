@@ -25,15 +25,15 @@ root_router = DefaultRouter()
 root_router.registry.extend(accountsRouter.registry)
 root_router.registry.extend(shopRouter.registry)
 
-urlpatterns = [
+urlpatterns = (
     path('admin/', admin.site.urls),
     path('api/', include(root_router.urls)),
     path('', include('accounts.urls'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+) + tuple(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 
 if settings.DEBUG:
     import debug_toolbar
 
-    urlpatterns += [
+    urlpatterns += (
         re_path(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
+    )

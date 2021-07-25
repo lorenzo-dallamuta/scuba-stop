@@ -7,7 +7,7 @@ from .views import ProfileViewSet
 router = DefaultRouter()
 router.register(r'profiles', ProfileViewSet, basename='profile')
 
-urlpatterns = [
+urlpatterns = (
     path('login/', LoginUser.as_view(), name="login"),
     path('logout/', LogoutView.as_view(next_page="/"), name='logout'),
     path('signup/', signup, name='signup'),
@@ -15,4 +15,4 @@ urlpatterns = [
     path('password/', PasswordChangeView.as_view(template_name='accounts/password.html',
          success_url="/"), name='password'),
     path('', home, name='home'),
-]
+)

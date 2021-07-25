@@ -13,7 +13,7 @@ class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(), label=_('Username'))
     password = forms.CharField(
         widget=forms.PasswordInput(), label=_('Password'))
-    fields = ['username', 'password']
+    fields = ('username', 'password')
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)
