@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'users.apps.UsersConfig',
     'accounts.apps.AccountsConfig',
     'shop.apps.ShopConfig',
@@ -147,6 +148,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # crispy forms styles pack
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+# django rest framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 # log sql queries to console if debug is set to true
 CUSTOM_LOGGING_LEVEL = 'WARNING'

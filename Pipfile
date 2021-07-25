@@ -8,6 +8,7 @@ django = "~=3.2"
 django-crispy-forms = "~=1.11"
 pillow = "~=8.3"
 djangorestframework = "~=3.12"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 django-debug-toolbar = "*"

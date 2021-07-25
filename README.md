@@ -12,3 +12,5 @@ TODO: users aren't supposed to set the discount value in their orders
 TODO: categories embedded in orders should have category name instead of url
 NOTE: this is the expected behavior with hyperlinked relations
 SOLUTION: descriptive hyperlinks can be set with slug values
+
+TODO: remove sessionauthentication (if jwtauthentication was setup properly)
