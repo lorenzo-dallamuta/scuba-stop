@@ -4,9 +4,9 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.utils.translation import gettext as _
 from rest_framework import viewsets
-from accounts.forms import LoginForm, SignupFormProfile, SignupFormUser, UpdateFormUser
-from accounts.models import Profile
-from shop.permissions import IsAdminOrReadOnly, IsOwner
+from shop.permissions import IsOwnerOrAdmin
+from .forms import LoginForm, SignupFormProfile, SignupFormUser, UpdateFormUser
+from .models import Profile
 from .serializers import ProfileSerializer
 
 
@@ -71,7 +71,7 @@ def update(request):
 
 class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
-    permission_classes = (IsAdminOrReadOnly, IsOwner)
+    permission_classes = (IsOwnerOrAdmin,)
 
     def get_queryset(self):
         return Profile.objects.filter(user=self.request.user)

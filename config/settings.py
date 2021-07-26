@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0g&b9agc&@3zavxh$vfmt4zvwxp=%ax+0c7qb8ge71pds)fj-f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -112,7 +112,7 @@ LOGIN_REDIRECT_URL = 'home'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'it'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'Europe/Rome'
 
@@ -148,12 +148,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # crispy forms styles pack
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# django rest framework settings
+# django rest framework settings, undesired defaults are commented out
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
 

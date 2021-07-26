@@ -14,3 +14,7 @@ NOTE: this is the expected behavior with hyperlinked relations
 SOLUTION: descriptive hyperlinks can be set with slug values
 
 TODO: remove sessionauthentication (if jwtauthentication was setup properly)
+
+NOTE: that the browsable api requires sessionauthentication, so it was shut off together with it, use a rest api client instead
+
+TODO: as is Profile is using the simplejwt package default viewsets, tehy are not enough to handle the auth_user relation

@@ -1,12 +1,12 @@
 from rest_framework import serializers
+from rest_framework.relations import HyperlinkedRelatedField
 from shop.models import Category, Order, Product
-from accounts.serializers import ProfileSerializer
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        exclude = ("url",)
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
@@ -15,12 +15,13 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ("url",)
 
 
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
-    profile = ProfileSerializer(read_only=True)
+    profile = HyperlinkedRelatedField(
+        read_only=True, view_name='profile-detail')
 
     class Meta:
         model = Order
-        fields = '__all__'
+        exclude = ("url",)

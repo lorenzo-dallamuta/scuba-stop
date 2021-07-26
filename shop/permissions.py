@@ -9,7 +9,7 @@ class IsAdminOrReadOnly(permissions.IsAdminUser):
         return super().has_permission(request, view)
 
 
-class IsOwner(permissions.BasePermission):
+class IsOwner(permissions.IsAuthenticated):
     """
     this permission type is coupled with:
 
@@ -22,3 +22,9 @@ class IsOwner(permissions.BasePermission):
         if hasattr(obj, 'profile'):
             return obj.profile.user == request.user
         return obj.user == request.user
+
+
+class IsOwnerOrAdmin(IsOwner, permissions.IsAdminUser):
+    def has_object_permission(self, request, view, obj):
+        isowner = super().has_object_permission(request, view, obj)
+        return isowner or request.user.is_staff

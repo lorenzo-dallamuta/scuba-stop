@@ -28,8 +28,8 @@ root_router.registry.extend(shopRouter.registry)
 
 urlpatterns = (
     path('admin/', admin.site.urls),
+    path('auth/', include('accounts.urls')),
     path('api/', include(root_router.urls)),
-    path('', include('accounts.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ) + tuple(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
